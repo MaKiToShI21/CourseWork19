@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Kursovaya19.ExistingMaterialsPage"
+             xmlns:local="clr-namespace:Kursovaya19.ViewModels"
+             Title="Список существующих материалов"
+             BackgroundColor="LightSkyBlue">
+
+    <ContentPage.BindingContext>
+        <local:ExistingMaterialsViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Button">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="HeightRequest" Value="45" />
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <StackLayout Margin="20">
+            <StackLayout BackgroundColor="DarkGray" Padding="10" >
+                <Label Text="Материалы" HorizontalTextAlignment="Center" FontAttributes="Bold" />
+            </StackLayout>
+
+            <StackLayout BackgroundColor="WhiteSmoke" HorizontalOptions="FillAndExpand" HeightRequest="500" Padding="10" >
+                <ScrollView>
+                    <Frame BackgroundColor="LightBlue"  HorizontalOptions="FillAndExpand" HeightRequest="480" BorderColor="Black" CornerRadius="10" >
+                        <ListView x:Name="listOfExistingMaterials" ItemsSource="{Binding ListOfExistingMaterials}" SelectedItem="{Binding SelectedExistingMaterial, Mode=TwoWay}" >
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Label Text="{Binding .}" Padding="8" />
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Frame>
+                </ScrollView>
+            </StackLayout>
+
+            <!-- Отступ от списка для кнопок -->
+            <StackLayout Margin="0,20,0,0">
+                <Grid ColumnSpacing="20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Button Text="Добавить материалы" Clicked="AddListOfExistingMaterialsClicked" Grid.Column="0" Grid.Row="0" />
+                    <Button Text="Изменить материал" Command="{Binding ChangeExistingMaterialCommand}" Grid.Column="1" Grid.Row="0" />
+                    <Button Text="Удалить материал" Command="{Binding RemoveExistingMaterialCommand}" Grid.Column="2" Grid.Row="0" />
+                </Grid>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

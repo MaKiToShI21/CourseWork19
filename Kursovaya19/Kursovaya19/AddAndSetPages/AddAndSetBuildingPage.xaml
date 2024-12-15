@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Kursovaya19.AddAndSetBuildingPage"
+             xmlns:local="clr-namespace:Kursovaya19.ViewModels"
+             Title="Добавление/Изменение строящихся объектов"
+             BackgroundColor="LightSkyBlue">
+
+    <ContentPage.BindingContext>
+        <local:BuildingsViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Button">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="HeightRequest" Value="45" />
+                <Setter Property="MinimumWidthRequest" Value="150" />
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="PlaceholderColor" Value="Gray" />
+                <Setter Property="HeightRequest" Value="45" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout Padding="20" Spacing="10" VerticalOptions="StartAndExpand" >
+        <!-- Название объекта -->
+        <Label Text="Название строящегося объекта:" VerticalOptions="Center" HorizontalOptions="Start" FontAttributes="Bold" />
+        <Entry Placeholder="Введите название строящегося объекта" Text="{Binding NameOfBuilding}" MaxLength="100" />
+
+        <!-- Адресс объекта -->
+        <Label Text="Адрес строящегося объекта:" VerticalOptions="Center" HorizontalOptions="Start" FontAttributes="Bold" />
+        <Entry Placeholder="Введите адрес строящегося объекта" Text="{Binding AddressOfBuilding}" MaxLength="100" />
+
+        <!-- Таблица материалов -->
+        <ScrollView>
+            <Grid Margin="0, 10, 0, 0" ColumnSpacing="20" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <StackLayout Grid.Column="0">
+                    <!-- Шапка таблицы для материалов -->
+                    <Grid ColumnSpacing="10" Padding="10" BackgroundColor="LightGray" HorizontalOptions="FillAndExpand">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Text="Название" Grid.Row="0" Grid.Column="0" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                        <Label Text="Количество" Grid.Row="0" Grid.Column="1" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                        <Label Text="Ед. измерения" Grid.Row="0" Grid.Column="2" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                    </Grid>
+
+                    <!-- Список материалов -->
+                    <ScrollView>
+                        <StackLayout BackgroundColor="WhiteSmoke" Padding="10" Spacing="10" HorizontalOptions="FillAndExpand" HeightRequest="180">
+                            <ListView x:Name="listOfMaterials" ItemsSource="{Binding ListOfEstimateMaterials}" SelectedItem="{Binding SelectedMaterial, Mode=TwoWay}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <Grid ColumnSpacing="10" Padding="5" Margin="5" HorizontalOptions="FillAndExpand" BackgroundColor="LightBlue">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Label Text="{Binding NameOfMaterial}" Grid.Row="0" Grid.Column="0" HorizontalTextAlignment="Center" />
+                                                <Label Text="{Binding Quantity}" Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="Center" />
+                                                <Label Text="{Binding Unit}" Grid.Row="0" Grid.Column="2" HorizontalTextAlignment="Center" />
+                                            </Grid>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackLayout>
+                    </ScrollView>
+                </StackLayout>
+
+                <!--Доп. Кнопки-->
+                <StackLayout Grid.Column="1" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+                    <Grid RowSpacing="15">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Button Text="Добавить материал" Command="{Binding AddNewEstimateMaterialCommand}" Clicked="AddEstimateMaterialClicked" Grid.Column="0" Grid.Row="0" Background="LightGreen" />
+                        <Button Text="Изменить материал" Command="{Binding PreparingToChangeEstimateMaterialCommand}" Clicked="ChangeEstimateMaterialClicked" Grid.Column="0" Grid.Row="1" Background="LightGoldenrodYellow" />
+                        <Button Text="Удалить материал" Command="{Binding RemoveEstimateMaterialCommand}" Grid.Column="0" Grid.Row="2" Background="#FB5E5E" />
+                    </Grid>
+                </StackLayout>
+            </Grid>
+        </ScrollView>
+        <StackLayout Orientation="Horizontal" Margin="0, 10, 0, 0">
+            <Button Text="Отмена" Command="{Binding CancelCommand}" CommandParameter="Building" HorizontalOptions="Start" Margin="0, 0, 20, 0" />
+            <Button Text="Сохранить строящийся объект" Command="{Binding SaveBuildingCommand}" HorizontalOptions="Start" />
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

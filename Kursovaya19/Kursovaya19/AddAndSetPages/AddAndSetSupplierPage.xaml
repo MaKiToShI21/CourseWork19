@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Kursovaya19.AddAndSetSupplierPage"
+             xmlns:local="clr-namespace:Kursovaya19.ViewModels"
+             Title="Добавление/Изменение Поставщика"
+             BackgroundColor="LightSkyBlue">
+
+    <ContentPage.BindingContext>
+        <local:SupplierViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Button">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="HeightRequest" Value="45" />
+                <Setter Property="MinimumWidthRequest" Value="150" />
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontSize" Value="18" />
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="PlaceholderColor" Value="Gray" />
+                <Setter Property="HeightRequest" Value="45" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <StackLayout Spacing="10" Margin="20">
+            <!-- Таблица строящихся объектов -->
+            <Label Text="Выберите строящийся объект:" VerticalOptions="Center" HorizontalOptions="Start" FontAttributes="Bold" />
+            <StackLayout Spacing="10">
+                <StackLayout>
+                    <!-- Шапка таблицы для строящихся объектов -->
+                    <Grid ColumnSpacing="10" Padding="10" BackgroundColor="LightGray" HorizontalOptions="FillAndExpand">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Text="Название объекта" Grid.Row="0" Grid.Column="0" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                        <Label Text="Адрес объекта" Grid.Row="0" Grid.Column="1" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                    </Grid>
+
+                    <!-- Список строящихся объектов -->
+                    <ScrollView>
+                        <StackLayout BackgroundColor="WhiteSmoke" Padding="10" Spacing="10" HorizontalOptions="FillAndExpand" HeightRequest="180">
+                            <ListView x:Name="listOfConstrObjects" ItemsSource="{Binding ListOfBuildings}" SelectedItem="{Binding Building, Mode=TwoWay}" >
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <Grid ColumnSpacing="10" Padding="5" Margin="5" HorizontalOptions="FillAndExpand" BackgroundColor="LightBlue">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <Label Text="{Binding NameOfBuilding}" Grid.Row="0" Grid.Column="0" HorizontalTextAlignment="Center" />
+                                                <Label Text="{Binding AddressOfBuilding}" Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="Center" />
+                                            </Grid>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackLayout>
+                    </ScrollView>
+                </StackLayout>
+
+                <Label Text="Выбран строящийся объект:" HorizontalOptions="Start" FontAttributes="Bold" />
+                <Frame BackgroundColor="WhiteSmoke" BorderColor="Black" CornerRadius="10">
+                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- Название объекта -->
+                        <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.Column="1" >
+                            <Label Text="Название объекта:" FontAttributes="Bold" Margin="0, 0, 10, 0" />
+                            <Label Text="{Binding Building.NameOfBuilding}" />
+                        </StackLayout>
+
+                        <!-- Адрес объекта -->
+                        <StackLayout Orientation="Horizontal" Grid.Row="1" Grid.Column="1" >
+                            <Label Text="Адрес объекта: " FontAttributes="Bold" Margin="0, 0, 10, 0" />
+                            <Label Text="{Binding Building.AddressOfBuilding}" />
+                        </StackLayout>
+                    </Grid>
+                </Frame>
+            </StackLayout>
+            
+            <Label Text="ФИО поставщика:" FontAttributes="Bold" />
+            <Entry Placeholder="Введите ФИО поставщика" Text="{Binding FullName}" TextChanged="OnFullNameTextChanged" MaxLength="50" />
+
+            <Label Text="Номер телефона поставщика:" FontAttributes="Bold" />
+            <Entry Placeholder="Введите номер телефона" Text="{Binding PhoneNumber}" MaxLength="12" TextChanged="OnPhoneNumberTextChanged" />
+
+            <Label Text="Название банка поставщика:" FontAttributes="Bold" />
+            <Entry Placeholder="Введите название банка" Text="{Binding BankName}" MaxLength="30" TextChanged="OnBankNameTextChanged" />
+
+            <Label Text="Номер банковского счёта:" FontAttributes="Bold" />
+            <Entry Placeholder="Введите номер счёта" Text="{Binding CurrentAccount}" MaxLength="20" TextChanged="OnEntryTextChanged" />
+
+            <Label Text="ИНН поставщика:" FontAttributes="Bold" />
+            <Entry Placeholder="Введите ИНН" Text="{Binding INN}" MaxLength="12" TextChanged="OnEntryTextChanged" />
+
+            <StackLayout Orientation="Horizontal" Margin="0, 10, 0, 0">
+                <Button Text="Отмена" Command="{Binding CancelCommand}" CommandParameter="Supplier" HorizontalOptions="Start" Margin="0, 0, 20, 0" />
+                <Button Text="Сохранить информацию" Command="{Binding SaveSupplierCommand}" />
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

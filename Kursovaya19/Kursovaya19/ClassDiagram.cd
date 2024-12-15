@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Kursovaya19.Classes.Brigade">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAAAAFAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Brigade.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kursovaya19.Classes.Builder">
+    <Position X="5.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAABAIAAAAICAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Builder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kursovaya19.Classes.Building">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAABAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>Classes\Building.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kursovaya19.Classes.CompletedWork">
+    <Position X="2.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\CompletedWork.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kursovaya19.Classes.DataStorage">
+    <Position X="2.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAIAAAAACCBAAAAAAAgAAAAAAAAASAAAQAAAACAA=</HashCode>
+      <FileName>Classes\DataStorage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kursovaya19.Classes.SaveAndLoadData">
+    <Position X="0.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAEAAAAAgAAAAAAA=</HashCode>
+      <FileName>Classes\DataStorage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kursovaya19.Classes.EstimateMaterial">
+    <Position X="4" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\EstimateMaterial.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kursovaya19.Classes.Material">
+    <Position X="5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAIAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Classes\Material.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kursovaya19.Classes.Registration">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAAAAAAAAAQAAAAAAAABAAA=</HashCode>
+      <FileName>Classes\Registration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kursovaya19.Classes.RegistrationMaterial">
+    <Position X="7.75" Y="5" Width="1.5" />
+    <InheritanceLine Type="Kursovaya19.Classes.Material" ManuallyRouted="true">
+      <Path>
+        <Point X="5.75" Y="7.75" />
+        <Point X="5.75" Y="7.106" />
+        <Point X="8.5" Y="7.106" />
+        <Point X="8.5" Y="6.684" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\RegistrationMaterial.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kursovaya19.Classes.Request">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\Request.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kursovaya19.Classes.RequestMaterial">
+    <Position X="5.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Classes\RequestMaterial.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kursovaya19.Classes.Supplier">
+    <Position X="0.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAIAAAAAAQAAAAAAIAQAAABAAAAAAAAA=</HashCode>
+      <FileName>Classes\Supplier.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kursovaya19.Classes.WorkAccounting">
+    <Position X="4" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABAAAAAAAAAQgAAAAAAIAAAA=</HashCode>
+      <FileName>Classes\WorkAccounting.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kursovaya19.ViewModels.BaseViewModel">
+    <Position X="17" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAgAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\BaseViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Kursovaya19.ViewModels.BrigadeViewModel">
+    <Position X="19.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QJAAEEAASAAAAAhFAAAg1QQAACAgAASAAACAhggRggg=</HashCode>
+      <FileName>ViewModels\BrigadeViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kursovaya19.ViewModels.BuilderViewModel">
+    <Position X="10.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAYgUABBYAACBoDEQICMiIwAAACaAAYAIgAAAgQDgQA=</HashCode>
+      <FileName>ViewModels\BuilderViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kursovaya19.ViewModels.BuildingsViewModel">
+    <Position X="17.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAEAECGAQAAqCAAAIQQgABADYMBAAACAiAAAsAYAMAI=</HashCode>
+      <FileName>ViewModels\BuildingsViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kursovaya19.ViewModels.ExistingMaterialsViewModel">
+    <Position X="23" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAICAQAwAQAAAQEAAAGIAAAgAAAAAAAAEAQAAAgA=</HashCode>
+      <FileName>ViewModels\ExistingMaterialsViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kursovaya19.ViewModels.RegistrationViewModel">
+    <Position X="12.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QECBAAJgTRAiKIAAIACAQEAEJAAgABSAAIBSgEQBOCA=</HashCode>
+      <FileName>ViewModels\RegistrationViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kursovaya19.ViewModels.RequestViewModel">
+    <Position X="14.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>0AAACBAAQiAoGAAAIBAIAAEEJABgAAaAAAECkBQAIgA=</HashCode>
+      <FileName>ViewModels\RequestViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kursovaya19.ViewModels.SupplierViewModel">
+    <Position X="21.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>UEACIBAgQAAQAIAAAhCAQAAAAEBIEQhABBEAAAAAACQ=</HashCode>
+      <FileName>ViewModels\SupplierViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Kursovaya19.ViewModels.WorkAccountingViewModel">
+    <Position X="16" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>UBVkCBACREgCAAAgAAAQFAQEBAAIgUQoABAQBIYAQAA=</HashCode>
+      <FileName>ViewModels\WorkAccountingViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

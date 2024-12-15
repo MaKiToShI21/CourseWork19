@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Kursovaya19.AddListOfExistingMaterialsPage"
+             xmlns:local="clr-namespace:Kursovaya19.ViewModels"
+             Title="Добавление списка существующих материалов"
+             BackgroundColor="LightSkyBlue">
+
+    <ContentPage.BindingContext>
+        <local:ExistingMaterialsViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Button">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="HeightRequest" Value="50" />
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <StackLayout Margin="20">
+            <!-- Заголовок -->
+            <StackLayout BackgroundColor="DarkGray" Padding="10">
+                <Label Text="Добавление списка материалов" HorizontalTextAlignment="Center" FontAttributes="Bold" />
+            </StackLayout>
+
+            <!-- Editor для ввода текста -->
+            <StackLayout BackgroundColor="WhiteSmoke" HeightRequest="400" Padding="10">
+                <Editor x:Name="enteredListOfExistingMaterials" 
+                        BackgroundColor="LightBlue"
+                        Text="{Binding NamesOfExistingMaterials}" 
+                        TextColor="Black"
+                        Placeholder="Введите список материалов:" 
+                        FontSize="16" 
+                        HeightRequest="380"/>
+            </StackLayout>
+
+            <!-- Кнопки -->
+            <StackLayout Margin="0,20,0,0" HorizontalOptions="Start" VerticalOptions="Start" >
+                <Grid ColumnSpacing="20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200" />
+                        <ColumnDefinition Width="200" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Button Text="Отмена" Command="{Binding CancelCommand}" CommandParameter="ExistingMaterial" Grid.Column="0" Grid.Row="0" />
+                    <Button Text="Сохранить" Command="{Binding AddEnteredListOfExistingMaterialsCommand}" Grid.Column="1" Grid.Row="0" />
+                </Grid>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

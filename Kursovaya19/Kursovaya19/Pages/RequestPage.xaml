@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Kursovaya19.RequestPage"
+             xmlns:local="clr-namespace:Kursovaya19.ViewModels"
+             Title="Список заявок"
+             BackgroundColor="LightSkyBlue">
+
+    <ContentPage.BindingContext>
+        <local:RequestViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Button">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="HeightRequest" Value="45" />
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="PlaceholderColor" Value="Gray" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <StackLayout Margin="20">
+            <Grid ColumnSpacing="10" Padding="10" BackgroundColor="DarkGray" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Строящийся объект" Grid.Row="0" Grid.Column="0" FontAttributes="Bold" />
+                <Label Text="Материалы" Grid.Row="0" Grid.Column="2" FontAttributes="Bold" />
+            </Grid>
+
+            <ScrollView>
+                <StackLayout Background="WhiteSmoke" HorizontalOptions="FillAndExpand" Padding="10" HeightRequest="500">
+                    <ListView x:Name="listOfRequests" ItemsSource="{Binding ListOfRequests}" SelectedItem="{Binding SelectedRequest, Mode=TwoWay}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Frame Padding="5" Margin="5" BackgroundColor="LightBlue" BorderColor="Black" CornerRadius="10">
+                                        <StackLayout>
+                                            <Grid ColumnSpacing="10" Padding="5">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="2*" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <StackLayout Grid.Column="0" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" Spacing="10">
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label Text="Название:" FontAttributes="Bold" Margin="0, 0, 10, 0" />
+                                                        <Label Text="{Binding Building.NameOfBuilding}" LineBreakMode="WordWrap" HorizontalOptions="StartAndExpand" />
+                                                    </StackLayout>
+
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label Text="Адрес:" FontAttributes="Bold" Margin="0, 0, 10, 0" />
+                                                        <Label Text="{Binding Building.AddressOfBuilding}" LineBreakMode="WordWrap" HorizontalOptions="StartAndExpand" />
+                                                    </StackLayout>
+                                                </StackLayout>
+
+                                                <StackLayout Grid.Column="1" Spacing="10">
+                                                    <Grid ColumnSpacing="10" Padding="5">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="*" />
+                                                        </Grid.ColumnDefinitions>
+
+                                                        <Label Text="Название" Grid.Row="0" Grid.Column="0" FontAttributes="Bold" />
+                                                        <Label Text="Количество" Grid.Row="0" Grid.Column="1" FontAttributes="Bold" />
+                                                        <Label Text="Ед. измерения" Grid.Row="0" Grid.Column="2" FontAttributes="Bold" />
+                                                    </Grid>
+
+                                                    <!-- Материалы заявки -->
+                                                    <ListView ItemsSource="{Binding ListOfRequestMaterials}" IsEnabled="False">
+                                                        <ListView.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <ViewCell>
+                                                                    <Grid ColumnSpacing="10" Padding="5">
+                                                                        <Grid.ColumnDefinitions>
+                                                                            <ColumnDefinition Width="*" />
+                                                                            <ColumnDefinition Width="*" />
+                                                                            <ColumnDefinition Width="*" />
+                                                                        </Grid.ColumnDefinitions>
+
+                                                                        <Label Text="{Binding NameOfMaterial}" Grid.Row="1" Grid.Column="0" Margin="0, 0, 0, 5" />
+                                                                        <Label Text="{Binding Quantity}" Grid.Row="1" Grid.Column="1" Margin="0, 0, 0, 5" />
+                                                                        <Label Text="{Binding Unit}" Grid.Row="1" Grid.Column="2" Margin="0, 0, 0, 5" />
+                                                                    </Grid>
+                                                                </ViewCell>
+                                                            </DataTemplate>
+                                                        </ListView.ItemTemplate>
+                                                    </ListView>
+
+                                                    <!--Дата поставки-->
+                                                    <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand">
+                                                        <Label Text="Дата поставки:" FontAttributes="Bold" Margin="0, 0, 10, 0" />
+                                                        <Label Text="{Binding DateTime, StringFormat='{0:d}'}" />
+                                                    </StackLayout>
+                                                </StackLayout>
+                                            </Grid>
+                                        </StackLayout>
+                                    </Frame>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </ScrollView>
+
+            <Grid ColumnSpacing="25" RowSpacing="5" WidthRequest="1000" Margin="0, 20, 0, 0" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Button Text="Создать заявку" Command="{Binding AddNewRequestCommand}" Clicked="AddRequestClicked" Grid.Column="0" Grid.Row="0" Background="LightGreen" />
+                <Button Text="Изменить заявку" Command="{Binding PreparingToChangeRequestCommand}" Clicked="ChangeRequestClicked" Grid.Column="1" Grid.Row="0" Background="LightGoldenrodYellow" />
+                <Button Text="Удалить заявку" Command="{Binding RemoveRequestCommand}" Grid.Column="2" Grid.Row="0" Background="#FB5E5E" />
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

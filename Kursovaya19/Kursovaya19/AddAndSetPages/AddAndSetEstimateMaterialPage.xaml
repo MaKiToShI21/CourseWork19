@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Kursovaya19.AddAndSetEstimateMaterialPage"
+             xmlns:local="clr-namespace:Kursovaya19.ViewModels"
+             Title="Добавление/Изменение материалов"
+             BackgroundColor="LightSkyBlue">
+
+    <ContentPage.BindingContext>
+        <local:BuildingsViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Button">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="HeightRequest" Value="45" />
+                <Setter Property="MinimumWidthRequest" Value="150" />
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontSize" Value="18" />
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="PlaceholderColor" Value="Gray" />
+                <Setter Property="HeightRequest" Value="45" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <StackLayout>
+            <StackLayout Padding="20" Spacing="10" VerticalOptions="StartAndExpand">
+                <!-- Название материала -->
+                <Label Text="Выберите название материала:" FontAttributes="Bold" />
+                <Picker x:Name="existingMaterialPicker"
+                        SelectedIndexChanged="NameOfMaterialPickerSelectedIndexChanged"
+                        BackgroundColor="White"
+                        TextColor="Black"
+                        TitleColor="Black">
+                </Picker>
+
+                <!-- Единицы измерения -->
+                <Label Text="Выберите единицы измерения:" FontAttributes="Bold" />
+                <Picker x:Name="unitPicker"
+                        SelectedIndexChanged="UnitPickerSelectedIndexChanged"
+                        BackgroundColor="White"
+                        TextColor="Black"
+                        TitleColor="Black">
+                </Picker>
+
+                <!-- Количество -->
+                <Label Text="Количество:" FontAttributes="Bold" />
+                <Entry Placeholder="Введите количество" Text="{Binding Quantity}" />
+
+                <!-- Кнопки -->
+                <StackLayout Orientation="Horizontal" Margin="0, 10, 0, 0" >
+                    <Button Text="Отмена" Command="{Binding CancelCommand}" CommandParameter="EstimateMaterial" Margin="0, 0, 20, 0" />
+                    <Button Text="Сохранить" Command="{Binding SaveEstimateMaterialCommand}" />
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

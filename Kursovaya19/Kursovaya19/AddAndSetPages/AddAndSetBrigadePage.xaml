@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Kursovaya19.AddAndSetPages.AddAndSetBrigadePage"
+             xmlns:local="clr-namespace:Kursovaya19.ViewModels"
+             Title="Добавление/Изменение бригады"
+             BackgroundColor="LightSkyBlue">
+
+    <ContentPage.BindingContext>
+        <local:BrigadeViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Button">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="HeightRequest" Value="45" />
+                <Setter Property="MinimumWidthRequest" Value="150" />
+            </Style>
+            <Style x:Key="GlobalLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="HeightRequest" Value="45" />
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="PlaceholderColor" Value="Gray" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <StackLayout Spacing="30" Margin="20">
+            <StackLayout Spacing="5" >
+                <Label Text="Название бригады:" Style="{StaticResource GlobalLabelStyle}" HorizontalOptions="Start" />
+                <Entry Placeholder="Введите название бригады" Text="{Binding NameOfBrigade}" MaxLength="30" />
+            </StackLayout>
+
+            <StackLayout Spacing="30">
+                <StackLayout>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3.75*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <StackLayout Grid.Column="0">
+                            <StackLayout Padding="5" BackgroundColor="DarkGray">
+                                <Label Text="Список работников" Style="{StaticResource GlobalLabelStyle}" />
+                            </StackLayout>
+                            
+                            <Grid ColumnSpacing="10" Padding="5" BackgroundColor="LightGray" HorizontalOptions="FillAndExpand">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label Text="ФИО" Grid.Row="0" Grid.Column="0" FontSize="16"  Style="{StaticResource GlobalLabelStyle}" />
+                                <Label Text="Пол" Grid.Row="0" Grid.Column="1" FontSize="16" Style="{StaticResource GlobalLabelStyle}" />
+                                <Label Text="Дата рождения" Grid.Row="0" FontSize="16" Grid.Column="2" Style="{StaticResource GlobalLabelStyle}" />
+                                <Label Text="Адрес проживания" Grid.Row="0" FontSize="16" Grid.Column="3" Style="{StaticResource GlobalLabelStyle}" />
+                                <Label Text="Трудовой стаж" Grid.Row="0" FontSize="16" Grid.Column="4" Style="{StaticResource GlobalLabelStyle}" />
+                                <Label Text="Специальности" Grid.Row="0" FontSize="16" Grid.Column="5" Style="{StaticResource GlobalLabelStyle}" />
+                            </Grid>
+
+                            <!-- Список работников -->
+                            <ScrollView>
+                                <StackLayout BackgroundColor="WhiteSmoke" Padding="10" Spacing="10" HorizontalOptions="FillAndExpand" HeightRequest="300">
+                                    <Frame Padding="5" BackgroundColor="LightBlue" BorderColor="Black" CornerRadius="10" HeightRequest="280" >
+                                        <CollectionView ItemsSource="{Binding ListOfFreeBuilders}" SelectionMode="Single" SelectedItem="{Binding SelectedWorker, Mode=TwoWay}" >
+                                            <CollectionView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Grid ColumnSpacing="10" Padding="10" Margin="5" HorizontalOptions="FillAndExpand">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="*" />
+                                                        </Grid.ColumnDefinitions>
+
+                                                        <Label Text="{Binding FullName}" Grid.Column="0" VerticalOptions="Center" FontAttributes="None" Style="{StaticResource GlobalLabelStyle}" />
+                                                        <Label Text="{Binding Gender}" Grid.Column="1" VerticalOptions="Center" FontAttributes="None" Style="{StaticResource GlobalLabelStyle}" />
+                                                        <Label Text="{Binding Birthday, StringFormat='{0:d}'}" Grid.Column="2" VerticalOptions="Center" FontAttributes="None" Style="{StaticResource GlobalLabelStyle}" />
+                                                        <Label Text="{Binding ResidenceAddress}" Grid.Column="3" VerticalOptions="Center" FontAttributes="None" Style="{StaticResource GlobalLabelStyle}" />
+                                                        <Label Text="{Binding WorkExperience}" Grid.Column="4" VerticalOptions="Center" FontAttributes="None" Style="{StaticResource GlobalLabelStyle}" />
+
+                                                        <StackLayout Grid.Column="5" Spacing="5">
+                                                            <ListView ItemsSource="{Binding ListOfSpecialities}" IsEnabled="False" >
+                                                                <ListView.ItemTemplate>
+                                                                    <DataTemplate>
+                                                                        <ViewCell>
+                                                                            <Label Text="{Binding .}" FontSize="16" TextColor="Black" HorizontalTextAlignment="Center" />
+                                                                        </ViewCell>
+                                                                    </DataTemplate>
+                                                                </ListView.ItemTemplate>
+                                                            </ListView>
+                                                        </StackLayout>
+                                                    </Grid>
+                                                </DataTemplate>
+                                            </CollectionView.ItemTemplate>
+                                        </CollectionView>
+                                    </Frame>
+                                </StackLayout>
+                            </ScrollView>
+                        </StackLayout>
+
+                        <StackLayout Grid.Column="1" VerticalOptions="Center" HorizontalOptions="FillAndExpand" Margin="20, 20, 0, 0">
+                            <Grid RowSpacing="15">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Button Text="Добавить/Изменить бригадира" Command="{Binding AddBrigadierCommand}" Grid.Column="0" Grid.Row="0" />
+                                <Button Text="Добавить строителя" Command="{Binding AddBuilderCommand}" Grid.Column="0" Grid.Row="1" />
+                            </Grid>
+                        </StackLayout>
+                    </Grid>
+                </StackLayout>
+
+                <StackLayout>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3.75*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackLayout Grid.Column="0">
+                            <StackLayout Padding="5" BackgroundColor="DarkGray">
+                                <Label Text="Состав бригады" Style="{StaticResource GlobalLabelStyle}" />
+                            </StackLayout>
+                            <Grid ColumnSpacing="5" Padding="5" BackgroundColor="LightGray" HorizontalOptions="FillAndExpand">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="3*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label Text="Бригадир" FontSize="16" Grid.Column="0" Style="{StaticResource GlobalLabelStyle}" />
+                                <Label Text="Строители" FontSize="16" Grid.Column="1" Style="{StaticResource GlobalLabelStyle}" />
+                            </Grid>
+
+                            <!-- Состав бригады список -->
+                            <ScrollView>
+                                <StackLayout BackgroundColor="WhiteSmoke" Padding="10" Spacing="10" HorizontalOptions="FillAndExpand" HeightRequest="300">
+                                    <Frame Padding="5" MaximumHeightRequest="280" CornerRadius="10" BackgroundColor="LightBlue" BorderColor="Black" >
+                                        <Grid ColumnSpacing="5" HorizontalOptions="FillAndExpand">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="2.5*" />
+                                            </Grid.ColumnDefinitions>
+                                            <StackLayout Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center">
+                                                <StackLayout Orientation="Horizontal" Margin="0, 0, 0, 5">
+                                                    <Label Text="ФИО:" FontSize="16" Style="{StaticResource GlobalLabelStyle}" Margin="0, 0, 10, 0" />
+                                                    <Label Text="{Binding Brigadier.FullName}" LineBreakMode="WordWrap" HorizontalOptions="StartAndExpand" FontAttributes="None" Style="{StaticResource GlobalLabelStyle}" />
+                                                </StackLayout>
+
+                                                <StackLayout Orientation="Horizontal" Margin="0, 0, 0, 5">
+                                                    <Label Text="Пол:" FontSize="16" Style="{StaticResource GlobalLabelStyle}" Margin="0, 0, 10, 0" />
+                                                    <Label Text="{Binding Brigadier.Gender}" LineBreakMode="WordWrap" HorizontalOptions="StartAndExpand" FontAttributes="None" Style="{StaticResource GlobalLabelStyle}" />
+                                                </StackLayout>
+
+                                                <StackLayout Orientation="Horizontal" Margin="0, 0, 0, 5">
+                                                    <Label Text="День рождения:" FontSize="16" Style="{StaticResource GlobalLabelStyle}" Margin="0, 0, 10, 0" />
+                                                    <Label Text="{Binding Brigadier.Birthday, StringFormat='{0:d}'}" LineBreakMode="WordWrap" HorizontalOptions="StartAndExpand" FontAttributes="None"  Style="{StaticResource GlobalLabelStyle}" />
+                                                </StackLayout>
+
+                                                <StackLayout Margin="0, 0, 0, 5">
+                                                    <Label Text="Адрес проживания:" FontSize="16" HorizontalOptions="Start" Style="{StaticResource GlobalLabelStyle}" Margin="0, 0, 10, 0" />
+                                                    <Label Text="{Binding Brigadier.ResidenceAddress}" LineBreakMode="WordWrap" HorizontalOptions="Start" FontAttributes="None" Style="{StaticResource GlobalLabelStyle}" />
+                                                </StackLayout>
+
+                                                <StackLayout Orientation="Horizontal" Margin="0, 0, 0, 5">
+                                                    <Label Text="Стаж работы:" FontSize="16" Style="{StaticResource GlobalLabelStyle}" Margin="0, 0, 10, 0" />
+                                                    <Label Text="{Binding Brigadier.WorkExperience}" LineBreakMode="WordWrap" HorizontalOptions="StartAndExpand" FontAttributes="None"  Style="{StaticResource GlobalLabelStyle}" />
+                                                </StackLayout>
+                                            </StackLayout>
+
+                                            <StackLayout Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
+                                                <ListView ItemsSource="{Binding Builders}" SelectedItem="{Binding SelectedBuilder, Mode=TwoWay}" >
+                                                    <ListView.Header>
+                                                        <Grid ColumnSpacing="5" Padding="5">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="*" />
+                                                                <ColumnDefinition Width="0.7*" />
+                                                                <ColumnDefinition Width="*" />
+                                                                <ColumnDefinition Width="2.5*" />
+                                                                <ColumnDefinition Width="0.8*" />
+                                                                <ColumnDefinition Width="1.75*" />
+                                                            </Grid.ColumnDefinitions>
+
+                                                            <Label Text="ФИО" Grid.Column="0" FontSize="16" Style="{StaticResource GlobalLabelStyle}" />
+                                                            <Label Text="Пол" Grid.Column="1" FontSize="16" Style="{StaticResource GlobalLabelStyle}" />
+                                                            <Label Text="Дата рождения" FontSize="16" Grid.Column="2" Style="{StaticResource GlobalLabelStyle}" />
+                                                            <Label Text="Адрес проживания" FontSize="16" Grid.Column="3" Style="{StaticResource GlobalLabelStyle}" />
+                                                            <Label Text="Трудовой стаж" FontSize="16" Grid.Column="4" Style="{StaticResource GlobalLabelStyle}" />
+                                                            <Label Text="Специальности" FontSize="16" Grid.Column="5" Style="{StaticResource GlobalLabelStyle}" />
+                                                        </Grid>
+                                                    </ListView.Header>
+                                                    <ListView.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <ViewCell>
+                                                                <Grid ColumnSpacing="5" Padding="5" Margin="5" HorizontalOptions="FillAndExpand">
+                                                                    <Grid.ColumnDefinitions>
+                                                                        <ColumnDefinition Width="*" />
+                                                                        <ColumnDefinition Width="0.7*" />
+                                                                        <ColumnDefinition Width="*" />
+                                                                        <ColumnDefinition Width="2.5*" />
+                                                                        <ColumnDefinition Width="0.8*" />
+                                                                        <ColumnDefinition Width="1.75*" />
+                                                                    </Grid.ColumnDefinitions>
+
+                                                                    <Label Text="{Binding FullName}" Grid.Column="0" VerticalOptions="Center" FontAttributes="None" Style="{StaticResource GlobalLabelStyle}" />
+                                                                    <Label Text="{Binding Gender}" Grid.Column="1" VerticalOptions="Center" FontAttributes="None" Style="{StaticResource GlobalLabelStyle}" />
+                                                                    <Label Text="{Binding Birthday, StringFormat='{0:d}'}" Grid.Column="2" VerticalOptions="Center" FontAttributes="None" Style="{StaticResource GlobalLabelStyle}" />
+                                                                    <Label Text="{Binding ResidenceAddress}" Grid.Column="3" VerticalOptions="Center" FontAttributes="None" Style="{StaticResource GlobalLabelStyle}" />
+                                                                    <Label Text="{Binding WorkExperience}" Grid.Column="4" VerticalOptions="Center" FontAttributes="None" Style="{StaticResource GlobalLabelStyle}" />
+
+                                                                    <StackLayout Grid.Column="5" Spacing="5">
+                                                                        <ListView ItemsSource="{Binding ListOfSpecialities}" IsEnabled="False" >
+                                                                            <ListView.ItemTemplate>
+                                                                                <DataTemplate>
+                                                                                    <ViewCell>
+                                                                                        <Label Text="{Binding .}" FontSize="16" TextColor="Black" HorizontalTextAlignment="Center" />
+                                                                                    </ViewCell>
+                                                                                </DataTemplate>
+                                                                            </ListView.ItemTemplate>
+                                                                        </ListView>
+                                                                    </StackLayout>
+                                                                </Grid>
+                                                            </ViewCell>
+                                                        </DataTemplate>
+                                                    </ListView.ItemTemplate>
+                                                </ListView>
+                                            </StackLayout>
+                                        </Grid>
+                                    </Frame>
+                                </StackLayout>
+                            </ScrollView>
+                        </StackLayout>
+
+                        <StackLayout Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Margin="20, 20, 0, 0">
+                            <Button Text="Убрать строителя из состава" Command="{Binding RemoveBuilderCommand}" Grid.Column="0" Grid.Row="1" />
+                        </StackLayout>
+                    </Grid>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="Отмена" Command="{Binding CancelCommand}" HorizontalOptions="Start" Margin="0, 0, 20, 0" />
+                    <Button Text="Сохранить информацию" Command="{Binding SaveBrigadeCommand}" />
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

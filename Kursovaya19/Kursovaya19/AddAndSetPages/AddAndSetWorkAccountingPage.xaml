@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Kursovaya19.AddAndSetPages.AddAndSetWorkAccountingPage"
+             xmlns:local="clr-namespace:Kursovaya19.ViewModels"
+             Title="Добавление/Изменение учёта выполняемых работ"
+             BackgroundColor="LightSkyBlue">
+
+    <ContentPage.BindingContext>
+        <local:WorkAccountingViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Button">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="HeightRequest" Value="45" />
+                <Setter Property="MinimumWidthRequest" Value="150" />
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontSize" Value="18" />
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="PlaceholderColor" Value="Gray" />
+                <Setter Property="HeightRequest" Value="45" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <StackLayout Spacing="10" Margin="20">
+            <!-- Название строящегося объекта -->
+            <Label Text="Выберите название строящегося объекта:" FontAttributes="Bold" />
+            <StackLayout Orientation="Horizontal">
+                <Picker
+                    x:Name="buildingsPicker"
+                    SelectedIndexChanged="BuildingsPickerSelectedIndexChanged"
+                    TextColor="Black"
+                    BackgroundColor="White"
+                    WidthRequest="200"/>
+                <Label Text="{Binding NameOfBuilding, StringFormat='Выбрано название строящегося объекта: {0}'}" FontSize="16" FontAttributes="Bold" Margin="20, 10, 0, 0" />
+            </StackLayout>
+
+            <!-- Название бригады -->
+            <Label Text="Выберите название бригады:" FontAttributes="Bold" />
+            <StackLayout Orientation="Horizontal">
+                <Picker 
+                    x:Name="brigadesPicker"
+                    SelectedIndexChanged="BrigadesPickerSelectedIndexChanged"
+                    TextColor="Black"
+                    BackgroundColor="White"
+                    WidthRequest="200"/>
+                <Label Text="{Binding NameOfBrigade, StringFormat='Выбрано название бригады: {0}'}" FontSize="16" FontAttributes="Bold" Margin="20, 10, 0, 0" />
+            </StackLayout>
+
+            <!-- Дата -->
+            <Label Text="Выберите дату:" FontAttributes="Bold" />
+            <StackLayout Orientation="Horizontal">
+                <DatePicker
+                    Date="{Binding DateTime}"
+                    MinimumDate="{Binding MinDate}"
+                    MaximumDate="{Binding MaxDate}"
+                    TextColor="Black"
+                    BackgroundColor="White"
+                    WidthRequest="200"/>
+                <Label Text="{Binding DateTime, StringFormat='Выбрана дата: {0:d}'}" FontSize="16" FontAttributes="Bold" Margin="20, 10, 0, 0" />
+            </StackLayout>
+
+            <!-- Перечень выполненных работ -->
+            <StackLayout Spacing="10">
+                <StackLayout Orientation="Horizontal">
+                    <StackLayout Grid.Column="0" WidthRequest="400" HorizontalOptions="Start" Margin="0, 10, 10, 0">
+                        <Grid Padding="15" BackgroundColor="DarkGray">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="Вид работы" Grid.Column="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontAttributes="Bold" />
+                            <Label Text="Выполненный объём работы" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontAttributes="Bold" />
+                        </Grid>
+
+                        <ScrollView>
+                            <StackLayout Background="WhiteSmoke" Padding="10" HeightRequest="330" >
+                                <Frame BackgroundColor="LightBlue" HeightRequest="310" >
+                                    <ListView x:Name="listOfCompletedWorks" ItemsSource="{Binding ListOfCompletedWorks}" SelectedItem="{Binding SelectedCompletedWork, Mode=TwoWay}" >
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <ViewCell>
+                                                    <Grid Padding="5">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="*" />
+                                                        </Grid.ColumnDefinitions>
+                                                        <Label Text="{Binding TypeOfWork}" Grid.Column="0" HorizontalTextAlignment="Center" />
+                                                        <Label Text="{Binding PercentOfCompletedWork, StringFormat='{0} %'}" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                                    </Grid>
+                                                </ViewCell>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </Frame>
+                            </StackLayout>
+                        </ScrollView>
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="1" Padding="20" HorizontalOptions="Start" VerticalOptions="Center" Spacing="10">
+                        <StackLayout Spacing="10" Margin="20, 0, 20, 0">
+                            <Label Text="Введите тип работы:" FontAttributes="Bold" HorizontalOptions="Center" />
+                            <Entry Text="{Binding TypeOfWork, Mode=TwoWay}" Placeholder="Введите тип работы" WidthRequest="350" MaxLength="35" />
+
+                            <Label Text="{Binding PercentOfCompletedWork, StringFormat='Выберите процент выполненного объёма работы: {0:F2} %'}" WidthRequest="400" HorizontalTextAlignment="Center" FontAttributes="Bold" />
+                            <Slider Value="{Binding PercentOfCompletedWork, Mode=TwoWay}" Minimum ="0" Maximum="100" WidthRequest="300" />
+                        </StackLayout>
+
+                        <Label Text="Действия с перечнем выполненных работ:" FontAttributes="Bold" HorizontalOptions="Center" />
+                        <Grid ColumnSpacing="10" RowSpacing="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Button Text="Добавить" Command="{Binding AddNewCompletedWorkCommand}" Grid.ColumnSpan="2" Grid.Row="0" Margin="0,0,0,10" />
+
+                            <Button Text="Изменить" Command="{Binding ChangeCompletedWorkCommand}" Grid.Column="0" Grid.Row="1" Margin="0,0,5,0" />
+                            <Button Text="Отменить изменение" Clicked="CancelChangeCompletedWorkCommand" Grid.Column="1" Grid.Row="1" Margin="5,0,0,0" />
+
+                            <Button Text="Удалить" Command="{Binding RemoveCompletedWorkCommand}" Grid.ColumnSpan="2" Grid.Row="2" Margin="0,10,0,0" />
+                        </Grid>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" Margin="0, 10, 0, 0">
+                <Button Text="Отмена" Command="{Binding CancelCommand}" Margin="0, 0, 20, 0" />
+                <Button Text="Сохранить информацию" Command="{Binding SaveWorkAccountingCommand}" />
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Kursovaya19.BuildersPage"
+             xmlns:local="clr-namespace:Kursovaya19.ViewModels"
+             Title="Список работников"
+             BackgroundColor="LightSkyBlue">
+
+    <ContentPage.BindingContext>
+        <local:BuilderViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Button">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="HeightRequest" Value="45" />
+            </Style>
+            <Style x:Key="GlobalLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <StackLayout Margin="20" >
+            <!-- Список строителей -->
+            <StackLayout>
+                <StackLayout BackgroundColor="DarkGray" Padding="10">
+                    <Label Text="Список работников" FontSize="20" Style="{StaticResource GlobalLabelStyle}" />
+                </StackLayout>
+
+                <!-- Данные поставщиков -->
+                <StackLayout Spacing="10">
+                    <StackLayout>
+                        <!-- Шапка для таблицы строителей -->
+                        <Grid ColumnSpacing="10" Padding="7.5" BackgroundColor="LightGray" HorizontalOptions="Fill">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="ФИО" Grid.Row="0" Grid.Column="0" Style="{StaticResource GlobalLabelStyle}" />
+                            <Label Text="Пол" Grid.Row="0" Grid.Column="1" Style="{StaticResource GlobalLabelStyle}" />
+                            <Label Text="Дата рождения" Grid.Row="0" Grid.Column="2" Style="{StaticResource GlobalLabelStyle}" />
+                            <Label Text="Адрес проживания" Grid.Row="0" Grid.Column="3" Style="{StaticResource GlobalLabelStyle}" />
+                            <Label Text="Трудовой стаж" Grid.Row="0" Grid.Column="4" Style="{StaticResource GlobalLabelStyle}" />
+                            <Label Text="Специальности" Grid.Row="0" Grid.Column="5" Style="{StaticResource GlobalLabelStyle}" />
+                        </Grid>
+
+                        <!-- Данные о строителях -->
+                        <ScrollView>
+                            <StackLayout BackgroundColor="WhiteSmoke" Padding="10" Spacing="10" HorizontalOptions="FillAndExpand" HeightRequest="500">
+                                <ListView x:Name="listOfBuilders" ItemsSource="{Binding ListOfBuilders}" SelectedItem="{Binding SelectedBuilder, Mode=TwoWay}" >
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <Frame Padding="5" Margin="5" BackgroundColor="LightBlue" BorderColor="Black" CornerRadius="10">
+                                                    <Grid ColumnSpacing="10" Padding="5" Margin="5" HorizontalOptions="FillAndExpand">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="*" />
+                                                        </Grid.ColumnDefinitions>
+
+                                                        <Label Text="{Binding FullName}" Grid.Column="0" VerticalOptions="Center" FontAttributes="None" Style="{StaticResource GlobalLabelStyle}" />
+                                                        <Label Text="{Binding Gender}" Grid.Column="1" VerticalOptions="Center" FontAttributes="None" Style="{StaticResource GlobalLabelStyle}" />
+                                                        <Label Text="{Binding Birthday, StringFormat='{0:d}'}" Grid.Column="2" VerticalOptions="Center" FontAttributes="None" Style="{StaticResource GlobalLabelStyle}" />
+                                                        <Label Text="{Binding ResidenceAddress}" Grid.Column="3" VerticalOptions="Center" FontAttributes="None" Style="{StaticResource GlobalLabelStyle}" />
+                                                        <Label Text="{Binding WorkExperience}" Grid.Column="4" VerticalOptions="Center" FontAttributes="None" Style="{StaticResource GlobalLabelStyle}" />
+
+                                                        <StackLayout Grid.Column="5" VerticalOptions="Center">
+                                                            <CollectionView x:Name="listOfSpecialities" ItemsSource="{Binding ListOfSpecialities}" IsEnabled="False" >
+                                                                <CollectionView.ItemTemplate>
+                                                                    <DataTemplate>
+                                                                        <Label Text="{Binding .}" FontSize="16" TextColor="Black" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                                                                    </DataTemplate>
+                                                                </CollectionView.ItemTemplate>
+                                                            </CollectionView>
+                                                        </StackLayout>
+                                                    </Grid>
+                                                </Frame>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </StackLayout>
+                        </ScrollView>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+
+            <Grid ColumnSpacing="25" RowSpacing="5" WidthRequest="1000" Margin="0, 20, 0, 0" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Button Text="Добавить работника" Command="{Binding AddNewBuilderCommand}" Clicked="AddBuilderClicked" Grid.Column="0" Grid.Row="0" BackgroundColor="LightGreen" />
+                <Button Text="Изменить работника" Command="{Binding PreparingToChangeBuilderCommand}" Clicked="ChangeBuilderClicked" Grid.Column="1" Grid.Row="0" Background="LightGoldenrodYellow" />
+                <Button Text="Удалить работника" Command="{Binding RemoveBuilderCommand}" Grid.Column="2" Grid.Row="0" BackgroundColor="#FB5E5E" />
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

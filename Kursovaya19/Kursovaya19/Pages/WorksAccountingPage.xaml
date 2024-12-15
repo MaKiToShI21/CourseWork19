@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Kursovaya19.Pages.WorksAccountingPage"
+             xmlns:local="clr-namespace:Kursovaya19.ViewModels"
+             Title="Учёт выполняемых работ"
+             BackgroundColor="LightSkyBlue">
+
+    <ContentPage.BindingContext>
+        <local:WorkAccountingViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Button">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="HeightRequest" Value="45" />
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="MinimumWidthRequest" Value="150" />
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="PlaceholderColor" Value="Gray" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <StackLayout Margin="20">
+            <Grid ColumnSpacing="10" Padding="10" BackgroundColor="DarkGray" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Название объекта" Grid.Column="0" FontAttributes="Bold" />
+                <Label Text="Название Бригады" Grid.Column="1" FontAttributes="Bold" />
+                <Label Text="Дата" Grid.Column="2" FontAttributes="Bold" />
+                <Label Text="Перечь выполненых работ" Grid.Column="3" FontAttributes="Bold" />
+            </Grid>
+
+            <ScrollView>
+                <StackLayout Background="WhiteSmoke" HorizontalOptions="FillAndExpand" Padding="10" HeightRequest="500">
+                    <ListView x:Name="listOfWorksAccounting" ItemsSource="{Binding ListOfWorksAccounting}" SelectedItem="{Binding SelectedWorkAccounting, Mode=TwoWay}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Frame Padding="5" Margin="5" BackgroundColor="LightBlue" BorderColor="Black" CornerRadius="10">
+                                        <StackLayout>
+                                            <Grid ColumnSpacing="10" Padding="5">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="2*" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <Label Text="{Binding NameOfBuilding}" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" />
+                                                <Label Text="{Binding NameOfBrigade}" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" />
+                                                <Label Text="{Binding DateTime, StringFormat='{0:d}'}" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" />
+
+                                                <StackLayout Grid.Column="3" Spacing="10">
+                                                    <ListView ItemsSource="{Binding ListOfCompletedWorks}" IsEnabled="False">
+                                                        <ListView.Header>
+                                                            <Grid ColumnSpacing="10" Padding="5">
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="*" />
+                                                                    <ColumnDefinition Width="*" />
+                                                                </Grid.ColumnDefinitions>
+
+                                                                <Label Text="Вид работы" Grid.Column="0" FontAttributes="Bold" />
+                                                                <Label Text="Выполненный объем" Grid.Column="1" FontAttributes="Bold" />
+                                                            </Grid>
+                                                        </ListView.Header>
+                                                        <ListView.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <ViewCell>
+                                                                    <Grid ColumnSpacing="10" Padding="5">
+                                                                        <Grid.ColumnDefinitions>
+                                                                            <ColumnDefinition Width="*" />
+                                                                            <ColumnDefinition Width="*" />
+                                                                        </Grid.ColumnDefinitions>
+
+                                                                        <Label Text="{Binding TypeOfWork}" Grid.Column="0" />
+                                                                        <Label Text="{Binding PercentOfCompletedWork, StringFormat='{0} %'}" Grid.Column="1" />
+                                                                    </Grid>
+                                                                </ViewCell>
+                                                            </DataTemplate>
+                                                        </ListView.ItemTemplate>
+                                                    </ListView>
+                                                </StackLayout>
+                                            </Grid>
+                                        </StackLayout>
+                                    </Frame>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </ScrollView>
+
+            <Grid ColumnSpacing="25" RowSpacing="5" WidthRequest="1000" Margin="0, 20, 0, 0" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Button Text="Добавить новый учёт" Command="{Binding AddNewWorkAccountingCommand}" Clicked="AddWorkAccountingClicked" Grid.Column="0" Grid.Row="0" Background="LightGreen" />
+                <Button Text="Изменить учёт" Command="{Binding PreparingToChangeWorkAccountingCommand}" Clicked="ChangeWorkAccountingClicked" Grid.Column="1" Grid.Row="0" Background="LightGoldenrodYellow" />
+                <Button Text="Удалить учёт" Command="{Binding RemoveWorkAccountingCommand}" Grid.Column="2" Grid.Row="0" Background="#FB5E5E" />
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
