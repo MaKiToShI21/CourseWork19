@@ -275,7 +275,7 @@ namespace Kursovaya19.ViewModels
         {
             if (SelectedSpeciality != null)
             {
-                var result = await Application.Current.MainPage.DisplayPromptAsync("Название специальности", "Введите новое название специальности:", "Ок", "Отмена");
+                var result = await Application.Current.MainPage.DisplayPromptAsync("Название специальности", "Введите новое название специальности:", "Ок", "Отмена", initialValue: SelectedSpeciality);
 
                 if (!string.IsNullOrEmpty(result))
                 {

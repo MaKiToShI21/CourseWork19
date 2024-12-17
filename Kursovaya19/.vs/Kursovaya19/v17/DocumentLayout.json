@@ -1,7 +1,24 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\__Studies\\_Semester_3\\_Programming\\CourseWork\\Kursovaya19\\Kursovaya19\\",
-  "Documents": [],
+  "WorkspaceRootPath": "D:\\__Studies\\_Semester_3\\_Programming\\CourseWork\\CourseWork19\\Kursovaya19\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{37B47727-051A-4254-A394-9B718E6CF506}|Kursovaya19\\Kursovaya19.csproj|d:\\__studies\\_semester_3\\_programming\\coursework\\coursework19\\kursovaya19\\kursovaya19\\classes\\datastorage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{37B47727-051A-4254-A394-9B718E6CF506}|Kursovaya19\\Kursovaya19.csproj|solutionrelative:kursovaya19\\classes\\datastorage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{37B47727-051A-4254-A394-9B718E6CF506}|Kursovaya19\\Kursovaya19.csproj|d:\\__studies\\_semester_3\\_programming\\coursework\\coursework19\\kursovaya19\\kursovaya19\\viewmodels\\existingmaterialsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{37B47727-051A-4254-A394-9B718E6CF506}|Kursovaya19\\Kursovaya19.csproj|solutionrelative:kursovaya19\\viewmodels\\existingmaterialsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{37B47727-051A-4254-A394-9B718E6CF506}|Kursovaya19\\Kursovaya19.csproj|d:\\__studies\\_semester_3\\_programming\\coursework\\coursework19\\kursovaya19\\kursovaya19\\viewmodels\\registrationviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{37B47727-051A-4254-A394-9B718E6CF506}|Kursovaya19\\Kursovaya19.csproj|solutionrelative:kursovaya19\\viewmodels\\registrationviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{37B47727-051A-4254-A394-9B718E6CF506}|Kursovaya19\\Kursovaya19.csproj|d:\\__studies\\_semester_3\\_programming\\coursework\\coursework19\\kursovaya19\\kursovaya19\\viewmodels\\builderviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{37B47727-051A-4254-A394-9B718E6CF506}|Kursovaya19\\Kursovaya19.csproj|solutionrelative:kursovaya19\\viewmodels\\builderviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +26,64 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DataStorage.cs",
+              "DocumentMoniker": "D:\\__Studies\\_Semester_3\\_Programming\\CourseWork\\CourseWork19\\Kursovaya19\\Kursovaya19\\Classes\\DataStorage.cs",
+              "RelativeDocumentMoniker": "Kursovaya19\\Classes\\DataStorage.cs",
+              "ToolTip": "D:\\__Studies\\_Semester_3\\_Programming\\CourseWork\\CourseWork19\\Kursovaya19\\Kursovaya19\\Classes\\DataStorage.cs",
+              "RelativeToolTip": "Kursovaya19\\Classes\\DataStorage.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAACjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-17T02:43:10.011Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ExistingMaterialsViewModel.cs",
+              "DocumentMoniker": "D:\\__Studies\\_Semester_3\\_Programming\\CourseWork\\CourseWork19\\Kursovaya19\\Kursovaya19\\ViewModels\\ExistingMaterialsViewModel.cs",
+              "RelativeDocumentMoniker": "Kursovaya19\\ViewModels\\ExistingMaterialsViewModel.cs",
+              "ToolTip": "D:\\__Studies\\_Semester_3\\_Programming\\CourseWork\\CourseWork19\\Kursovaya19\\Kursovaya19\\ViewModels\\ExistingMaterialsViewModel.cs",
+              "RelativeToolTip": "Kursovaya19\\ViewModels\\ExistingMaterialsViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAoAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-17T02:53:58.456Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "BuilderViewModel.cs",
+              "DocumentMoniker": "D:\\__Studies\\_Semester_3\\_Programming\\CourseWork\\CourseWork19\\Kursovaya19\\Kursovaya19\\ViewModels\\BuilderViewModel.cs",
+              "RelativeDocumentMoniker": "Kursovaya19\\ViewModels\\BuilderViewModel.cs",
+              "ToolTip": "D:\\__Studies\\_Semester_3\\_Programming\\CourseWork\\CourseWork19\\Kursovaya19\\Kursovaya19\\ViewModels\\BuilderViewModel.cs",
+              "RelativeToolTip": "Kursovaya19\\ViewModels\\BuilderViewModel.cs",
+              "ViewState": "AgIAAAkBAAAAAAAAAAAAwCwBAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-17T02:39:34.232Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "RegistrationViewModel.cs",
+              "DocumentMoniker": "D:\\__Studies\\_Semester_3\\_Programming\\CourseWork\\CourseWork19\\Kursovaya19\\Kursovaya19\\ViewModels\\RegistrationViewModel.cs",
+              "RelativeDocumentMoniker": "Kursovaya19\\ViewModels\\RegistrationViewModel.cs",
+              "ToolTip": "D:\\__Studies\\_Semester_3\\_Programming\\CourseWork\\CourseWork19\\Kursovaya19\\Kursovaya19\\ViewModels\\RegistrationViewModel.cs",
+              "RelativeToolTip": "Kursovaya19\\ViewModels\\RegistrationViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAIBZwCIAAABMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-16T18:15:43.104Z",
+              "EditorCaption": ""
             }
           ]
         }

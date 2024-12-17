@@ -114,7 +114,7 @@ namespace Kursovaya19.ViewModels
         {
             if (SelectedExistingMaterial != null)
             {
-                var result = await Application.Current.MainPage.DisplayPromptAsync("Название материала", "Введите новое название материала:", "Ок", "Отмена");
+                var result = await Application.Current.MainPage.DisplayPromptAsync("Название материала", "Введите новое название материала:", "Ок", "Отмена", initialValue: SelectedExistingMaterial);
 
                 if (!string.IsNullOrEmpty(result))
                 {
